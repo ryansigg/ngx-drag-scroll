@@ -90,6 +90,8 @@ export class DragScrollDirective implements OnDestroy, OnInit, OnChanges, DoChec
 
   @Output() reachesRightBound = new EventEmitter<boolean>();
 
+  @Output() activeSlide = new EventEmitter<number>();
+
 
   private disableScroll(axis: string): void {
     this.el.nativeElement.style[`overflow-${axis}`] = 'hidden';
@@ -250,12 +252,14 @@ export class DragScrollDirective implements OnDestroy, OnInit, OnChanges, DoChec
           this.currIndex = idx;
           if (snap) {
             this.scrollTo(ele, childrenWidth, 500);
+            this.activeSlide.emit(this.currIndex);
           }
         } else {
           // forward scrolling
           this.currIndex = idx + 1;
           if (snap) {
             this.scrollTo(ele, childrenWidth + currentClildWidth, 500);
+            this.activeSlide.emit(this.currIndex);
           }
         }
         stop();
