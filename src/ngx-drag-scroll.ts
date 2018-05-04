@@ -475,10 +475,8 @@ export class DragScrollDirective implements OnDestroy, OnInit, OnChanges, DoChec
     if (!this.isPressed && !this.isAnimating && !this.snapDisabled) {
       this.isScrolling = true;
       clearTimeout(this.scrollTimer);
-      this.scrollTimer = window.setTimeout(() => {
-        this.isScrolling = false;
-        this.locateCurrentIndex(true);
-      }, 500);
+      this.locateCurrentIndex(true);
+      this.isScrolling = false;
     } else {
       this.locateCurrentIndex();
     }
