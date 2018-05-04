@@ -247,18 +247,18 @@ export class DragScrollDirective implements OnDestroy, OnInit, OnChanges, DoChec
       if (ele.scrollLeft >= childrenWidth &&
           ele.scrollLeft <= nextChildrenWidth) {
 
-        if (nextChildrenWidth - ele.scrollLeft > currentClildWidth / 2 && !this.scrollReachesRightEnd) {
+        if (nextChildrenWidth - ele.scrollLeft > currentClildWidth / 1.25 && !this.scrollReachesRightEnd) {
           // roll back scrolling
           this.currIndex = idx;
           if (snap) {
-            this.scrollTo(ele, childrenWidth, 500);
+            this.scrollTo(ele, childrenWidth, 100);
             this.activeSlide.emit(this.currIndex);
           }
         } else {
           // forward scrolling
           this.currIndex = idx + 1;
           if (snap) {
-            this.scrollTo(ele, childrenWidth + currentClildWidth, 500);
+            this.scrollTo(ele, childrenWidth + currentClildWidth, 100);
             this.activeSlide.emit(this.currIndex);
           }
         }
